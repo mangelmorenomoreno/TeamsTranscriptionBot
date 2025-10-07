@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Connector" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Schema" Version="4.23.0" />
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.45.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.91.0" />
+    <PackageReference Include="Microsoft.Graph.Communications.Calls" Version="1.2.0.10563" />
+  </ItemGroup>
+
+</Project>
