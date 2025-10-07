@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = TeamsLiveTranscriptionBot
+build_property.ProjectDir = C:\Users\USUARIO\Documents\perceptio\TeamsLiveTranscriptionBot\TeamsLiveTranscriptionBot\src\TeamsLiveTranscriptionBot\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

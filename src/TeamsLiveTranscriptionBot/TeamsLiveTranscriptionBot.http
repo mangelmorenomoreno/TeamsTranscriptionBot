@@ -1,0 +1,6 @@
+@TeamsLiveTranscriptionBot_HostAddress = http://localhost:5124
+
+GET {{TeamsLiveTranscriptionBot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

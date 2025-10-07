@@ -1,0 +1,40 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.11",
+    "version": "1.0.0",
+    "id": "<GUID_APP_ID_BOT>", 
+    "packageName": "com.noesis.teamslivetranscriptionbot",
+    "developer": {
+      "name": "Noesis",
+      "websiteUrl": "https://<tu-dominio>",
+      "privacyUrl": "https://<tu-dominio>/privacy",
+      "termsOfUseUrl": "https://<tu-dominio>/terms"
+    },
+    "name": { "short": "TeamsLiveTranscriptionBot", "full": "Teams Live Transcription Bot" },
+    "description": {
+      "short": "Transcripción en tiempo real de reuniones de Teams.",
+      "full": "El bot se une a reuniones de Teams, transcribe el audio con Azure Speech y publica el texto en el chat."
+    },
+    "icons": { "color": "color.png", "outline": "outline.png" },
+    "accentColor": "#6264A7",
+    "bots": [
+      {
+        "botId": "<GUID_APP_ID_BOT>",
+        "scopes": [ "personal", "team", "groupchat" ],
+        "supportsFiles": false,
+        "supportsCalling": true,
+        "supportsVideo": false,
+        "commandLists": [
+          {
+            "scopes": ["team","groupchat","personal"],
+            "commands": [
+              { "title": "/transcribe on", "description": "Activa la transcripción en este hilo" },
+              { "title": "/transcribe off", "description": "Desactiva la transcripción en este hilo" }
+            ]
+          }
+        ]
+      }
+    ],
+    "validDomains": [ "<tu-dominio>" ]
+  }
+  

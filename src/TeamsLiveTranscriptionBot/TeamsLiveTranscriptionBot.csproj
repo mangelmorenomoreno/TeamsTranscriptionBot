@@ -1,0 +1,54 @@
+
+<!--
+
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Connector" Version="4.23.0" />
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.46.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.92.0" />
+    <PackageReference Include="Microsoft.Bot.Builder.Teams" Version="4.3.0-beta1" />
+    <PackageReference Include="Microsoft.Graph.Communications.Calls" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Graph.Communications.Calls.Media" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Graph.Communications.Client" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.77.0" />
+    <PackageReference Include="Microsoft.Skype.Bots.Media" Version="1.31.0.225-preview" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>
+-->
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.23.0" />
+    <PackageReference Include="Microsoft.Bot.Connector" Version="4.23.0" />
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.46.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.92.0" />
+    <PackageReference Include="Microsoft.Bot.Builder.Teams" Version="4.3.0-beta1" />
+    <PackageReference Include="Microsoft.Graph.Communications.Calls" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Graph.Communications.Calls.Media" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Graph.Communications.Client" Version="1.2.0.15235" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.77.0" />
+    <PackageReference Include="Microsoft.Skype.Bots.Media" Version="1.31.0.225-preview" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>
