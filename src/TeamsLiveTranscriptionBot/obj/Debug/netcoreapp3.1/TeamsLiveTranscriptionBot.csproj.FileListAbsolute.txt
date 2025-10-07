@@ -5,3 +5,11 @@ C:\Users\USUARIO\Documents\perceptio\TeamsLiveTranscriptionBot\TeamsLiveTranscri
 C:\Users\USUARIO\Documents\perceptio\TeamsLiveTranscriptionBot\TeamsLiveTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.csproj.CoreCompileInputs.cache
 C:\Users\USUARIO\Documents\perceptio\TeamsLiveTranscriptionBot\TeamsLiveTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\USUARIO\Documents\perceptio\TeamsLiveTranscriptionBot\TeamsLiveTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.AssemblyInfoInputs.cache
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.AssemblyInfo.cs
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\USUARIO\Documents\perceptio\repositorio\TeamsTranscriptionBot\src\TeamsLiveTranscriptionBot\obj\Debug\netcoreapp3.1\TeamsLiveTranscriptionBot.sourcelink.json
