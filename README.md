@@ -1,8 +1,8 @@
 # 🗣️ TeamsLiveTranscriptionBot
 
-**TeamsLiveTranscriptionBot** es un bot desarrollado en **.NET 8 (C#)** que se conecta a reuniones de **Microsoft Teams**, captura el audio en tiempo real y publica automáticamente la transcripción en el chat de la reunión.
+**TeamsLiveTranscriptionBot** es un bot desarrollado en **.NET 8 (C#)** que se conecta a reuniones de **Microsoft Teams**, captura el audio en tiempo real y publica la transcripción automáticamente en el chat de la reunión.
 
-Este proyecto utiliza **Microsoft Graph Communications SDK** para manejar llamadas y medios, y **Azure Cognitive Services Speech to Text** para realizar la transcripción de voz a texto.
+El bot utiliza **Microsoft Graph Communications SDK** para manejar las llamadas y la transmisión de audio, y **Azure Speech to Text** para la conversión de voz a texto.
 
 ---
 
@@ -10,80 +10,88 @@ Este proyecto utiliza **Microsoft Graph Communications SDK** para manejar llamad
 
 - ✅ Conexión directa a reuniones de Microsoft Teams.  
 - 🎧 Captura de audio en tiempo real.  
-- 🧠 Transcripción continua mediante **Azure Speech to Text**.  
+- 🧠 Transcripción continua mediante **Azure Cognitive Services Speech to Text**.  
 - 💬 Publicación automática del texto transcrito en el chat de Teams.  
-- 🔁 Activación/desactivación de transcripción mediante comando `/transcribe`.  
-- ⚙️ Configuración centralizada con `appsettings.json`.  
-- 🧩 Código completamente funcional, sin dependencias simuladas ni lógicas locales.
+- 🔁 Comando `/transcribe on|off` para activar o detener la transcripción.  
+- ⚙️ Configuración flexible mediante `appsettings.json`.
 
 ---
 
-## 🧩 Arquitectura del proyecto
-
-El bot está estructurado en módulos:
+## 🧩 Estructura del proyecto
 
 ```
-src/
-├── Bots/
-│   └── TeamsTranscriptionBot.cs
+TeamsLiveTranscriptionBot/
+├── appsettings.json
+├── appsettings.Development.json
+├── Program.cs
 ├── Controllers/
 │   └── BotController.cs
+├── Bots/
+│   └── TeamsTranscriptionBot.cs
 ├── Services/
 │   ├── GraphCallingService.cs
 │   ├── SpeechToTextService.cs
-│   └── ChatPoster.cs
+│   ├── ChatPoster.cs
+│   └── AudioSocketHandler.cs
 ├── Models/
 │   ├── Options.cs
 │   └── TranscriptionModels.cs
-├── appsettings.json
-└── Program.cs
+├── Media/
+│   └── (archivos auxiliares de configuración y logs de audio)
+└── TeamsLiveTranscriptionBot.csproj
 ```
 
 **Componentes clave:**
-- **GraphCallingService:** Maneja la conexión del bot a la reunión y la captura de audio.  
-- **SpeechToTextService:** Convierte el audio en texto usando Azure Speech.  
-- **ChatPoster:** Envía los mensajes transcritos al chat de Teams.  
-- **TeamsTranscriptionBot:** Administra los comandos `/transcribe on|off`.
+- **GraphCallingService:** administra las llamadas entrantes y la conexión con la API de medios de Teams.  
+- **SpeechToTextService:** convierte el audio en texto utilizando el servicio de Azure Speech.  
+- **ChatPoster:** publica las transcripciones generadas en el chat de Teams.  
+- **TeamsTranscriptionBot:** maneja los comandos de activación/desactivación.  
+- **BotController:** endpoint REST para recibir eventos desde Microsoft Teams.  
 
 ---
 
 ## ⚙️ Requisitos previos
 
-1. **.NET SDK 8.0 o superior**  
+1. **.NET 8 SDK o superior**
    ```bash
    dotnet --version
    ```
-2. **Ngrok** (para exponer el bot localmente a Teams)  
-   [Descargar Ngrok](https://ngrok.com/download)
-3. **Cuenta en Azure** con un recurso de **Speech Service** activo.  
-4. **Aplicación registrada en Microsoft Entra ID (Azure AD)** con permisos para:
+
+2. **Ngrok** (para exponer localmente el bot a Internet)
+   ```bash
+   ngrok http 5124
+   ```
+
+3. **Cuenta de Azure** con un recurso activo de **Speech Service**.
+
+4. **Aplicación registrada en Microsoft Entra ID (Azure AD)** con permisos:  
    - `Calls.AccessMedia.All`
-   - `Calls.Initiate.All`
    - `Calls.JoinGroupCall.All`
    - `Calls.JoinGroupCallAsGuest.All`
    - `OnlineMeetings.ReadWrite`
    - `Chat.ReadWrite`
-5. Permisos asignados a la app y consentimiento de administrador aplicado.
+
+5. **Permisos consentidos a nivel de administrador**.
 
 ---
 
-## 🧠 Configuración del proyecto
+## 🔧 Configuración
 
-Editar el archivo `appsettings.json` con tus credenciales y configuración:
+Archivo `appsettings.json`:
 
 ```json
 {
   "Bot": {
-    "MicrosoftAppId": "<GUID_APP_ID_BOT>",
+    "MicrosoftAppId": "<APP_ID_BOT>",
     "MicrosoftAppPassword": "<CLIENT_SECRET_BOT>",
     "TenantId": "<TENANT_ID>",
     "ServiceUrl": "https://smba.trafficmanager.net/emea/"
   },
   "GraphCalling": {
-    "AppId": "<GUID_APP_ID_BOT>",
+    "AppId": "<APP_ID_BOT>",
     "TenantId": "<TENANT_ID>",
     "ClientSecret": "<CLIENT_SECRET>",
-    "PublicBaseUrl": "https://<YOUR_NGROK_SUBDOMAIN>.ngrok-free.app/",
+    "PublicBaseUrl": "https://<NGROK_SUBDOMAIN>.ngrok-free.app/",
     "CallbackPath": "/api/calling",
     "MediaStartPort": 50000,
     "MediaEndPort": 51000
@@ -92,6 +100,11 @@ Editar el archivo `appsettings.json` con tus credenciales y configuración:
     "Region": "eastus",
     "Key": "<AZURE_SPEECH_KEY>",
     "Languages": "es-ES"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information"
+    }
   }
 }
 ```
@@ -100,96 +113,53 @@ Editar el archivo `appsettings.json` con tus credenciales y configuración:
 
 ## ▶️ Ejecución local
 
-1. **Restaurar dependencias:**
+1. **Restaurar dependencias**
    ```bash
    dotnet restore
    ```
 
-2. **Compilar el proyecto:**
+2. **Compilar**
    ```bash
    dotnet build
    ```
 
-3. **Ejecutar el bot:**
+3. **Ejecutar**
    ```bash
    dotnet run
    ```
 
-4. **Exponer el endpoint con Ngrok:**
+4. **Exponer con Ngrok**
    ```bash
    ngrok http 5124
    ```
 
-   Ejemplo de URL generada:
+   Actualiza la URL generada en `appsettings.json` → `"PublicBaseUrl"` y en el portal de Azure → *Messaging Endpoint*:  
    ```
-   Forwarding https://a1b2c3d4.ngrok-free.app -> http://localhost:5124
+   https://<ngrok-subdomain>.ngrok-free.app/api/messages
    ```
-
-5. **Actualizar la URL pública:**
-   - En `appsettings.json` → `"PublicBaseUrl": "https://a1b2c3d4.ngrok-free.app"`
-   - En el portal de Azure → **Messaging endpoint**:
-     ```
-     https://a1b2c3d4.ngrok-free.app/api/messages
-     ```
 
 ---
 
-## 💬 Pruebas en Microsoft Teams
+## 💬 Pruebas en Teams
 
-1. Empaqueta el bot como app de Teams (con `manifest.json`).  
-2. Instálalo en tu entorno de Teams.  
+1. Empaqueta el bot como aplicación de Teams (`manifest.json`).  
+2. Instálalo en tu entorno de Teams (modo desarrollador).  
 3. En el chat del bot, escribe:
    ```
    /transcribe on
    ```
-4. Invita el bot a una reunión.  
-   El bot se unirá, escuchará el audio y escribirá las transcripciones automáticamente en el chat de la reunión.
-
----
-
-## 🧾 Manifest de Teams
-
-Archivo: `manifest.json`
-```json
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.11",
-  "version": "1.0.0",
-  "id": "<YOUR_APP_ID>",
-  "packageName": "com.perceptio.teams.transcriptionbot",
-  "developer": {
-    "name": "Miguel Ángel Moreno Moreno",
-    "websiteUrl": "https://github.com/mangelmorenomoreno",
-    "privacyUrl": "https://privacy.microsoft.com/",
-    "termsOfUseUrl": "https://www.microsoft.com/"
-  },
-  "name": { "short": "TeamsLiveTranscriptionBot" },
-  "description": {
-    "short": "Bot que transcribe reuniones de Teams en tiempo real.",
-    "full": "Bot funcional desarrollado en .NET que se une a reuniones de Teams, transcribe el audio en tiempo real y publica el texto en el chat."
-  },
-  "bots": [
-    {
-      "botId": "<YOUR_APP_ID>",
-      "scopes": ["personal", "team", "groupchat"],
-      "supportsFiles": false,
-      "isNotificationOnly": false
-    }
-  ],
-  "permissions": ["identity", "messageTeamMembers"],
-  "validDomains": []
-}
-```
+4. Invita al bot a una reunión.  
+   Cuando se una, comenzará a transcribir el audio y publicar el texto en el chat.
 
 ---
 
 ## 🧪 Estado actual del proyecto
 
-- ✅ Compila y ejecuta correctamente sobre .NET 8.  
-- ✅ Inicializa la plataforma de medios sin errores.  
-- ✅ Listo para conectarse a Microsoft Teams mediante Ngrok.  
-- ✅ Transcribe audio en tiempo real con Azure Speech.  
-- ⏳ Pendiente: validación funcional en entorno Teams.  
+- ✅ Compila correctamente en .NET 8.  
+- ✅ Se inicializa la plataforma de medios sin errores.  
+- ✅ Preparado para conectarse a Microsoft Teams.  
+- ✅ Transcribe el audio en tiempo real usando Azure Speech.  
+- ⏳ Pendiente: pruebas finales en entorno real de Teams.
 
 ---
 
@@ -204,5 +174,4 @@ Desarrollador Backend
 
 ## 🪪 Licencia
 
-Este proyecto se distribuye bajo la licencia **MIT**.  
-Consulta el archivo `LICENSE` para más información.
+Proyecto distribuido bajo licencia **MIT**.
